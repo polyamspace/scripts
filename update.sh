@@ -28,6 +28,7 @@ print_help()
   echo "-l                    use openssl-legacy-provider node option for openssl3 systems"
   echo "-d                    dir where mastodon is installed"
   echo "--discard-changes     discard any local changes instead of stashing them"
+  echo "--clobber             Remove precompiled assets before precompiling"
   echo "--skip-migration      skip db migration"
   echo "--skip-precompile     skip precompiling assets"
 }
@@ -35,7 +36,7 @@ print_help()
 BRANCH=v4.1.x
 
 OPTIONS=hu:b:ld:
-LONGOPTS=help,user:,branch:,legacy,dir:,discard-changes,skip-migration,skip-precompile
+LONGOPTS=help,user:,branch:,legacy,dir:,discard-changes,clobber,skip-migration,skip-precompile
 
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 # Check if arguments have been parsed successfully
@@ -67,6 +68,9 @@ while true;do
       shift 2;;
     --discard-changes)
       DISCARD=true
+      shift;;
+    --clobber)
+      CLOBBER=true
       shift;;
     --skip-migration)
       SKIP_MIGRATION=true
@@ -150,6 +154,11 @@ fi
 
 # precompile assets
 if [[ ! "$SKIP_PRECOMPILE" ]];then
+  if [[ "$CLOBBER" ]]; then
+    echo "Removing precompiled assets..."
+    sudo -u "$MASTODONUSER" RAILS_ENV=production bundle exec rails assets:clobber
+  fi
+
   echo "Precompiling assets... This might take a while"
   if [[ "$LEGACY" ]]; then
     sudo -u "$MASTODONUSER" NODE_OPTIONS=--openssl-legacy-provider RAILS_ENV=production bundle exec rails assets:precompile

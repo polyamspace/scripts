@@ -24,3 +24,11 @@ A python script parsing hellpot logs and creating a toplist based on how much tr
 | -p --path | path to hellpot logs (default: current working directory) |
 | -t --top | show top x results (default: 10) |
 | -e --exclude | exclude IP(s) from results |
+
+### move_locales
+A python script which behaves similar to the old `manage:translations` command, adding missing strings to locale files and also removing them from upstream locales. Requires `en.json` in output dir.
+
+| options | description |
+| ------- | ----------- |
+| -i --in | path to upstream locales |
+| -o --out | path to new locales |

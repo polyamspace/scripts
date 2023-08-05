@@ -170,7 +170,7 @@ fi
 # restart services
 # If you copy this line make sure to add sudo in front of both commands
 echo "Restarting Mastodon..."
-systemctl reload mastodon-web && systemctl restart mastodon-{sidekiq,streaming}
+systemctl reload mastodon-web && systemctl restart mastodon-{'sidekiq*',streaming}
 
 # Clean cache
 echo "Cleaning cache..."

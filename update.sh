@@ -33,7 +33,7 @@ print_help()
   echo "--skip-precompile     skip precompiling assets"
 }
 
-BRANCH=v4.1.x
+BRANCH=main
 
 OPTIONS=hu:b:ld:
 LONGOPTS=help,user:,branch:,legacy,dir:,discard-changes,clobber,skip-migration,skip-precompile

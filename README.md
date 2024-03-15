@@ -32,3 +32,4 @@ A python script which behaves similar to the old `manage:translations` command, 
 | ------- | ----------- |
 | -i --in | path to upstream locales |
 | -o --out | path to new locales |
+| -e --extract | Copies translations instead of moving them |

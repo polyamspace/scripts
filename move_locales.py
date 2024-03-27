@@ -5,12 +5,12 @@ from pathlib import Path
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--in', type=Path, help='Path to locales to extract', dest='input')
 parser.add_argument('-o', '--out', type=Path, help='Path to new locales', dest='output')
-parser.add_argument('-e', '--extract', action=argparse.BooleanOptionalAction, help='Do not delete from input', dest='extract')
+parser.add_argument('-c', '--copy', action=argparse.BooleanOptionalAction, help='Do not delete from input', dest='copy')
 
 args = parser.parse_args()
 outputPath = args.output
 inputPath = args.input
-extract = args.extract
+copy = args.copy
 
 file = Path(outputPath, 'en.json')
 data = {}
@@ -49,7 +49,7 @@ for child in Path(inputPath).glob('*.json'):
         with open(newFile, 'w') as newLocaleFile:
           newLocaleFile.write(json.dumps(newData, sort_keys=True, indent=2, ensure_ascii=False) + '\n')
 
-    if not extract:
+    if not copy:
       # Open file again in write mode and delete strings present in en.json
       with open(child, 'w') as localeFile:
         for attr in to_delete:

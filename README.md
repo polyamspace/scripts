@@ -32,7 +32,7 @@ A python script which behaves similar to the old `manage:translations` command, 
 | ------- | ----------- |
 | -i --in | path to upstream locales |
 | -o --out | path to new locales |
-| -e --extract | Copies translations instead of moving them |
+| -c --copy | Copies translations instead of moving them |
 
 ### toot_keeper
 A python script checking english locale files in project dir for uses of "post" instead of "toot".

@@ -144,7 +144,7 @@ fi
 
 # Install dependencies
 echo "Installing dependencies..."
-sudo -u "$MASTODONUSER" bundle install && sudo -u "$MASTODONUSER" yarn install
+sudo -u "$MASTODONUSER" bundle install && sudo -u "$MASTODONUSER" yarn install --immutable
 
 # pre-deploy migration
 if [[ ! "$SKIP_MIGRATION" ]];then

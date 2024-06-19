@@ -161,9 +161,9 @@ if [[ ! "$SKIP_PRECOMPILE" ]];then
 
   echo "Precompiling assets... This might take a while"
   if [[ "$LEGACY" ]]; then
-    sudo -u "$MASTODONUSER" NODE_OPTIONS=--openssl-legacy-provider RAILS_ENV=production bundle exec rails yarn:install assets:precompile
+    sudo -u "$MASTODONUSER" NODE_OPTIONS=--openssl-legacy-provider RAILS_ENV=production bundle exec rails assets:precompile
   else
-    sudo -u "$MASTODONUSER" RAILS_ENV=production bundle exec rails yarn:install assets:precompile
+    sudo -u "$MASTODONUSER" RAILS_ENV=production bundle exec rails assets:precompile
   fi
 fi
 

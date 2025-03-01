@@ -27,6 +27,7 @@ print_help()
   echo "-b [BRANCH]           branch to pull"
   echo "-l                    use openssl-legacy-provider node option for openssl3 systems"
   echo "-d                    dir where mastodon is installed"
+  echo "-r [VERSION]          override .ruby-version with specified version"
   echo "--discard-changes     discard any local changes instead of stashing them"
   echo "--clobber             Remove precompiled assets before precompiling"
   echo "--skip-migration      skip db migration"
@@ -35,8 +36,8 @@ print_help()
 
 BRANCH=main
 
-OPTIONS=hu:b:ld:
-LONGOPTS=help,user:,branch:,legacy,dir:,discard-changes,clobber,skip-migration,skip-precompile
+OPTIONS=hu:b:ld:r:
+LONGOPTS=help,user:,branch:,legacy,dir:,ruby:,discard-changes,clobber,skip-migration,skip-precompile
 
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 # Check if arguments have been parsed successfully
@@ -65,6 +66,9 @@ while true;do
       shift;;
     -d|--dir)
       MASTODON_DIR="$2"
+      shift 2;;
+    -r|--ruby)
+      RUBY_VERSION="$2"
       shift 2;;
     --discard-changes)
       DISCARD=true
@@ -140,6 +144,11 @@ if [[ "$(sudo -u "$MASTODONUSER" git branch --show-current)" != "$BRANCH" ]]; th
 else
   echo "Pulling updates..."
   sudo -u "$MASTODONUSER" git pull polyam
+fi
+
+if [[ $RUBY_VERSION ]];then
+  echo "Overriding ruby version with $RUBY_VERSION"
+  echo "$RUBY_VERSION" > .ruby-version
 fi
 
 # Install dependencies

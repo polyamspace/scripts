@@ -41,3 +41,4 @@ A python script checking english locale files in project dir for uses of "post" 
 | options | description |
 | ------- | ----------- |
 | -p --path | path to source dir |
+| -i --ignored-keys | keys to ignore |

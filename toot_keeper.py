@@ -8,9 +8,11 @@ from pathlib import Path
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-p', '--project', type=Path, help='Path to Mastodon source dir to check', default='.')
+parser.add_argument('-i', '--ignored-keys', nargs='*', help='Locale keys to ignore', default=['dmca_address'])
 
 args = parser.parse_args()
 projectPath = args.project
+ignoredKeys = args.ignored_keys
 
 frontendPaths = ['app/javascript/mastodon/locales', 'app/javascript/flavours/glitch/locales', 'app/javascript/flavours/polyam/locales']
 backendPaths = ['config/locales', 'config/locales-glitch', 'config/locales-polyam']
@@ -41,7 +43,7 @@ def check_files(paths):
           exit(2)
       
       for key, localeString in data:
-        if localeString is not None and 'post'.casefold() in localeString.casefold():
+        if localeString is not None and 'post'.casefold() in localeString.casefold() and key not in ignoredKeys:
           print(f'{localeFile.relative_to(projectPath)}: {key} contains "post" instead of "toot"')
 
 check_files(frontendPaths + backendPaths)

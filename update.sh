@@ -195,12 +195,3 @@ if [[ ! "$SKIP_MIGRATION" ]];then
 fi
 
 echo "DONE!"
-
-# Don't know where else to put this:
-
-# https://github.com/mastodon/mastodon/pull/5039#discussion_r140416100
-# Command to create schema: rake db:drop && rake db:create && rake db:migrate
-# Drops and recreates database
-
-# https://gitlab.com/gitlab-org/gitlab-foss/-/commit/83c8241160ed48ab066e2c5bd58d0914a745197c
-# create migration: bundle exec rails g post_deployment_migration migration_name_here

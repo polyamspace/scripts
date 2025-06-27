@@ -105,6 +105,9 @@ if [[ ! "$MASTODON_DIR" ]]; then
   # Default install directory on arch
   elif [ -d "/var/lib/mastodon" ]; then
     MASTODON_DIR="/var/lib/mastodon"
+  # Some distros have a srv directory
+  elif [ -d "/srv/mastodon" ]; then
+    MASTODON_DIR="/srv/mastodon"
   else
     echo "Please specify where mastodon is installed with --dir"
     exit 2

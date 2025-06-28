@@ -1,0 +1,11 @@
+name: lint (python)
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run linting
+      uses: astral-sh/ruff-action@v3

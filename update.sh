@@ -11,6 +11,7 @@ fi
 
 # check for getopt compatibility
 # if exit code isn't 4, enhanced getopt is not available
+# shellcheck disable=SC2251
 ! getopt --test > /dev/null
 if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
   echo 'Enhanced getopt not available'
@@ -39,6 +40,7 @@ BRANCH=main
 OPTIONS=hu:b:ld:r:
 LONGOPTS=help,user:,branch:,legacy,dir:,ruby:,discard-changes,clobber,skip-migration,skip-precompile
 
+# shellcheck disable=SC2251
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 # Check if arguments have been parsed successfully
 if [[ ${PIPESTATUS[0]} -ne 0 ]]; then

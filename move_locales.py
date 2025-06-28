@@ -3,8 +3,8 @@
 Primary usage is to extract deleted upstream strings.
 """
 
-import json
 import argparse
+import json
 from pathlib import Path
 
 parser = argparse.ArgumentParser()

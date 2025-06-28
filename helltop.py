@@ -1,8 +1,8 @@
 """Parses hellpot log files and prints top trash-eaters."""
 
+import argparse
 import json
 import operator
-import argparse
 from pathlib import Path
 
 parser = argparse.ArgumentParser()

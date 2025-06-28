@@ -3,10 +3,11 @@
 Checks local files in frontendPath and backendPath for uses of "post" instead of "toot".
 """
 
-import json
-import yaml
 import argparse
+import json
 from pathlib import Path
+
+import yaml
 
 parser = argparse.ArgumentParser()
 parser.add_argument(

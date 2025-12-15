@@ -156,6 +156,15 @@ if [[ $RUBY_VERSION ]];then
   echo "$RUBY_VERSION" > .ruby-version
 fi
 
+# corepack is no longer included in node package
+# and has to be installed separately.
+# That might make yarn unavailable after updating node,
+# so install corepack when yarn can't be found.
+if ! type "yarn" > /dev/null 2>&1; then
+  echo "yarn not found. Installing corepack..."
+  npm install -g corepack
+fi
+
 # Install dependencies
 echo "Installing dependencies..."
 sudo -u "$MASTODONUSER" bundle install && sudo -u "$MASTODONUSER" yarn install --immutable

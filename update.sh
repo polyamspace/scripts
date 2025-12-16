@@ -27,7 +27,7 @@ print_help()
   echo "-u [USER]             run commands as user"
   echo "-b [BRANCH]           branch to pull"
   echo "-l                    use openssl-legacy-provider node option for openssl3 systems"
-  echo "-d                    dir where mastodon is installed"
+  echo "-d [PATH]             dir where mastodon is installed"
   echo "-r [VERSION]          override .ruby-version with specified version"
   echo "--discard-changes     discard any local changes instead of stashing them"
   echo "--clobber             Remove precompiled assets before precompiling"

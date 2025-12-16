@@ -20,19 +20,19 @@ fi
 
 print_help()
 {
-  echo "Usage: update.sh [OPTIONS]"
+  echo "Usage: update.sh [options]"
   echo
   echo "Options:"
-  echo "-h                    print this help and exit"
-  echo "-u [USER]             run commands as user"
-  echo "-b [BRANCH]           branch to pull"
-  echo "-l                    use openssl-legacy-provider node option for openssl3 systems"
-  echo "-d [PATH]             dir where mastodon is installed"
-  echo "-r [VERSION]          override .ruby-version with specified version"
-  echo "--discard-changes     discard any local changes instead of stashing them"
-  echo "--clobber             Remove precompiled assets before precompiling"
-  echo "--skip-migration      skip db migration"
-  echo "--skip-precompile     skip precompiling assets"
+  echo "-h, --help               print this help and exit"
+  echo "-u, --user <user>        run commands as user"
+  echo "-b, --branch <branch>    branch to pull [default: main]"
+  echo "-l, --legacy             use openssl-legacy-provider node option for openssl3 systems"
+  echo "-d, --dir <dir>          dir where mastodon is installed"
+  echo "-r, --ruby <version>     override .ruby-version with specified version"
+  echo "--discard-changes        discard any local changes instead of stashing them"
+  echo "--clobber                Remove precompiled assets before precompiling"
+  echo "--skip-migration         skip database migrations"
+  echo "--skip-precompile        skip precompiling assets"
 }
 
 BRANCH=main

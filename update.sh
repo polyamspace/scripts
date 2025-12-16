@@ -26,7 +26,6 @@ print_help()
   echo "-h, --help               print this help and exit"
   echo "-u, --user <user>        run commands as user"
   echo "-b, --branch <branch>    branch to pull [default: main]"
-  echo "-l, --legacy             use openssl-legacy-provider node option for openssl3 systems"
   echo "-d, --dir <dir>          dir where mastodon is installed"
   echo "-r, --ruby <version>     override .ruby-version with specified version"
   echo "--discard-changes        discard any local changes instead of stashing them"
@@ -37,8 +36,8 @@ print_help()
 
 BRANCH=main
 
-OPTIONS=hu:b:ld:r:
-LONGOPTS=help,user:,branch:,legacy,dir:,ruby:,discard-changes,clobber,skip-migration,skip-precompile
+OPTIONS=hu:b:d:r:
+LONGOPTS=help,user:,branch:,dir:,ruby:,discard-changes,clobber,skip-migration,skip-precompile
 
 # shellcheck disable=SC2251
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
@@ -63,9 +62,6 @@ while true;do
     -b|--branch)
       BRANCH="$2"
       shift 2;;
-    -l|--legacy)
-      LEGACY=true
-      shift;;
     -d|--dir)
       MASTODON_DIR="$2"
       shift 2;;
@@ -183,11 +179,7 @@ if [[ ! "$SKIP_PRECOMPILE" ]];then
   fi
 
   echo "Precompiling assets... This might take a while"
-  if [[ "$LEGACY" ]]; then
-    sudo -u "$MASTODONUSER" NODE_OPTIONS=--openssl-legacy-provider RAILS_ENV=production bundle exec rails assets:precompile
-  else
-    sudo -u "$MASTODONUSER" RAILS_ENV=production bundle exec rails assets:precompile
-  fi
+  sudo -u "$MASTODONUSER" RAILS_ENV=production bundle exec rails assets:precompile
 fi
 
 # restart services

@@ -1,3 +1,7 @@
+> [!WARNING]
+> This repo is no longer updated. \
+> Please see https://code.polyam.space/PolyamSpace for updated repos
+
 # scripts
 
 ### update.sh
